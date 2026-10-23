@@ -1,23 +1,38 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", "helpers:pinGitHubActionDigests"],
-  "enabledManagers": ["github-actions"],
+  "extends": [
+    "config:recommended",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "enabledManagers": [
+    "github-actions",
+    "npm"
+  ],
   "minimumReleaseAge": "3 days",
   "prConcurrentLimit": 3,
   "automerge": false,
   "packageRules": [
     {
       "description": "Only existing GitHub Action digest refreshes may merge after required workflow checks",
-      "matchManagers": ["github-actions"],
-      "matchDepTypes": ["action"],
-      "matchUpdateTypes": ["digest"],
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchDepTypes": [
+        "action"
+      ],
+      "matchUpdateTypes": [
+        "digest"
+      ],
       "automerge": true,
       "automergeType": "pr",
       "platformAutomerge": true
     },
     {
-      "matchUpdateTypes": ["major"],
+      "matchUpdateTypes": [
+        "major"
+      ],
       "automerge": false
     }
-  ]
+  ],
+  "dependencyDashboard": true
 }

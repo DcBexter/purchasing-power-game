@@ -12,6 +12,6 @@ Preact 8, TypeScript 2, Webpack 3 and node-sass 4. Source uses device-motion inp
 
 PRs, pushes to `skeleton` and weekly runs validate workflows, JavaScript config syntax and JSON files. CodeQL scans JavaScript/TypeScript; dependency review checks recognized manifests. These checks do not install or modernize the historical runtime, build the app or test gameplay/device sensors.
 
-Renovate updates CI dependencies only. GitHub Action digest refreshes may auto-merge after **Required maintenance** passes; action versions and application packages require review. Dependabot handles available security updates. Existing application vulnerabilities need a separate, tested modernization effort.
+Renovate proposes CI and npm application dependency updates. Runtime changes remain manual because no current build/gameplay proof exists. GitHub Action digest refreshes may auto-merge after **Required maintenance** passes; action versions and application packages require review. Dependabot handles available security updates. Existing application vulnerabilities need a separate, tested modernization effort.
 
 No publishing, automatic production deployment or release. Scheduled workflow and update configuration become effective after merge.
