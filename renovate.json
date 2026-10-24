@@ -15,5 +15,19 @@
   "automergeType": "pr",
   "platformAutomerge": true,
   "ignoreTests": false,
-  "forkProcessing": "enabled"
+  "forkProcessing": "enabled",
+  "packageRules": [
+    {
+      "matchManagers": ["npm"],
+      "matchPackageNames": [
+        "webpack", "webpack-cli", "webpack-dev-server", "ts-loader", "typescript",
+        "css-loader", "sass-loader", "sass", "style-loader", "karma-webpack",
+        "@jsdevtools/coverage-istanbul-loader", "@types/mocha", "@types/chai",
+        "mocha", "chai", "karma", "karma-chrome-launcher", "karma-coverage",
+        "karma-mocha", "karma-mocha-reporter", "karma-sourcemap-loader"
+      ],
+      "groupName": "build and test toolchain",
+      "separateMajorMinor": false
+    }
+  ]
 }

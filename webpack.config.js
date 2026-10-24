@@ -11,10 +11,10 @@ module.exports = {
   },
   devtool: 'source-map',
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.tsx?$/,
-        loader: 'awesome-typescript-loader'
+        loader: 'ts-loader'
       },
       {
         test: /\.sass$/,
@@ -31,6 +31,7 @@ module.exports = {
     ]
   },
   devServer: {
-    port: 4200
+    port: 4200,
+    static: path.join(__dirname, 'public')
   }
 };

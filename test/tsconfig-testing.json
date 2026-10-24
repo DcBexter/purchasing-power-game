@@ -2,8 +2,9 @@
   "compilerOptions": {
     "sourceMap": false,
     "inlineSourceMap": true,
-    "target": "es5",
-    "module": "commonjs",
+    "target": "es2017",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "experimentalDecorators": true,
     "allowJs": true,
     "jsx": "react",
@@ -20,7 +21,6 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true
   },
   "exclude": [
