@@ -44,7 +44,7 @@
     "mocha-webpack": "^1.1.0",
     "node-sass": "^7.0.0",
     "nyc": "^11.8.0",
-    "remap-istanbul": "^0.11.1",
+    "remap-istanbul": "^0.13.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
     "ts-node": "^6.0.5",
