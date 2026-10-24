@@ -9,7 +9,7 @@ type ScoreProps = {
 };
 export default class Score extends Component<ScoreProps, ScoreState> {
   addScoreBoxes() {
-    let scoreBoxes = [];
+    let scoreBoxes: JSX.Element[] = [];
     for (let i = 0; i < Math.max(this.props.maximumScore, this.props.currentScore); i++) {
       if (i + 1 <= this.props.currentScore) {
         scoreBoxes.push(<span className="score-box scored"/>);

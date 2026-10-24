@@ -1,27 +1,21 @@
-const dev = !!(process.env['NODE_ENV'] && process.env['NODE_ENV'].trim() === 'debug');
-const coverage = !dev;
-
 const webpackConfig = require('./webpack.config');
-webpackConfig.module.loaders[0].options = {
-  configFileName: 'test/tsconfig-testing.json'
+webpackConfig.module.rules[0].options = {
+  configFile: 'test/tsconfig-testing.json'
 };
 
-if (coverage) {
-  webpackConfig.module.loaders.push({
+webpackConfig.module.rules.push({
     test: /\.ts(x?)$/,
     enforce: 'post',
-    loader: 'istanbul-instrumenter-loader',
-    exclude: [
-      'node_modules'
-    ]
-  });
-}
+    loader: '@jsdevtools/coverage-istanbul-loader',
+    include: require('path').join(__dirname, 'src'),
+    options: { esModules: true }
+});
 module.exports = function (config) {
   const newConfig = {
     basePath: '',
-    browsers: ['Chrome'],
-    frameworks: ['mocha'],
-    reporters: ['mocha'],
+    browsers: ['ChromeHeadless'],
+    frameworks: ['mocha', 'webpack'],
+    reporters: ['mocha', 'coverage'],
     files: [
       'test/**/*.test.ts',
       'test/**/*.test.tsx'
@@ -33,18 +27,21 @@ module.exports = function (config) {
       'src/**/*.ts': ['webpack', 'sourcemap']
     },
     webpack: {
+      mode: 'development',
       devtool: 'inline-source-map',
       module: webpackConfig.module,
       resolve: webpackConfig.resolve
-    },
-    webpackServer: {
-      noInfo: true
     },
     coverageReporter: {
       reporters: [
         {
           type: 'json',
           dir: 'coverage/json',
+          subdir: '.'
+        },
+        {
+          type: 'html',
+          dir: 'coverage/html-ts',
           subdir: '.'
         }
       ]
@@ -57,14 +54,10 @@ module.exports = function (config) {
     },
     port: 9876,
     colors: true,
-    logLevel: dev ? config.LOG_INFO : config.LOG_ERROR,
-    autoWatch: dev === true,
-    singleRun: dev === false
+    logLevel: config.LOG_ERROR,
+    autoWatch: false,
+    singleRun: true
   };
-
-  if (coverage) {
-    newConfig.reporters.push('coverage');
-  }
 
   config.set(newConfig);
 };

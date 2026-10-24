@@ -15,8 +15,8 @@ export default () => (
 class Graph extends Component<{dir: 'x' | 'y' | 'z' | 'alpha' | 'beta' | 'gamma'}, {}> {
   canvas: HTMLCanvasElement | null;
   values: number[];
-  acceletationProperties = ['x', 'y', 'z'];
-  rotationValues = ['alpha', 'beta', 'gamma'];
+  acceletationProperties = ['x', 'y', 'z'] as const;
+  rotationValues = ['alpha', 'beta', 'gamma'] as const;
   isAcceleration: boolean;
   absoluteMaximum: number;
   constructor() {
@@ -28,24 +28,24 @@ class Graph extends Component<{dir: 'x' | 'y' | 'z' | 'alpha' | 'beta' | 'gamma'
   }
 
   componentDidMount() {
-    this.isAcceleration = this.acceletationProperties.includes(this.props.dir);
+    this.isAcceleration = this.acceletationProperties.some(prop => prop === this.props.dir);
     let counter = 0;
     let midValues: number[] = [];
     window.addEventListener('devicemotion', (event) => {
       if (event && event.acceleration && event.rotationRate) {
-        const value = this.isAcceleration
+        const value = this.props.dir === 'x' || this.props.dir === 'y' || this.props.dir === 'z'
           ? event.acceleration![this.props.dir]
           : event.rotationRate![this.props.dir];
         if (this.isAcceleration) {
           this.acceletationProperties.forEach((prop) => {
-            const absVal = Math.abs(event.acceleration![prop]);
+            const absVal = Math.abs(event.acceleration![prop] ?? 0);
             if (absVal > this.absoluteMaximum) {
               this.absoluteMaximum = absVal;
             }
           });
         } else {
           this.rotationValues.forEach((prop) => {
-            const absVal = Math.abs(event.rotationRate![prop]);
+            const absVal = Math.abs(event.rotationRate![prop] ?? 0);
             if (absVal > this.absoluteMaximum) {
               this.absoluteMaximum = absVal;
             }
