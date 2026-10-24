@@ -14,5 +14,6 @@
   "dependencyDashboard": true,
   "automergeType": "pr",
   "platformAutomerge": true,
-  "ignoreTests": false
+  "ignoreTests": false,
+  "forkProcessing": "enabled"
 }
