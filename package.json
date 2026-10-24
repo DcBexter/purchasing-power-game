@@ -23,7 +23,7 @@
   "license": "MIT",
   "dependencies": {
     "bootstrap": "^4.1.1",
-    "preact": "~8.2.6"
+    "preact": "~8.5.0"
   },
   "devDependencies": {
     "@types/chai": "^4.1.3",
